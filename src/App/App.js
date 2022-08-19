@@ -9,12 +9,20 @@ class App extends Component {
     this.state = {
       namaKantin: "Canteen SE",
       MenuMakanan: [
-        {nama: 'Ayam bakar', harga: 25000, stock: 10},
-        {nama: 'Bebek goreng', harga: 30000, stock: 12}
+        {id: 1, nama: 'Ayam bakar', harga: 25000, stock: 10},
+        {id: 2, nama: 'Bebek goreng', harga: 30000, stock: 12},
+        {id: 3, nama: 'Nasi goreng', harga: 12000, stock: 11},
+        {id: 4, nama: 'Kwetiaw goreng', harga: 12000, stock: 5},
+        {id: 5, nama: 'Ayam geprek', harga: 10000, stock: 7},
+        {id: 6, nama: 'Mie rebus', harga: 8000, stock: 6}
       ],
       MenuMinuman: [
-        {nama: 'Es teh manis', harga: 5000, stock: 5},
-        {nama: 'Es teh tarik', harga: 5500, stock: 3}
+        {id: 1, nama: 'Es teh manis', harga: 5000, stock: 5},
+        {id: 2, nama: 'Es teh tarik', harga: 5500, stock: 3},
+        {id: 3, nama: 'Es Jeruk', harga: 5000, stock: 5},
+        {id: 4, nama: 'Juice Mangga', harga: 12000, stock: 4},
+        {id: 5, nama: 'Juice Melon', harga: 10000, stock: 5},
+        {id: 6, nama: 'Juice Apple', harga: 8000, stock: 6}
       ]
     }
   }
@@ -28,27 +36,13 @@ class App extends Component {
         <h1 className='header-name-canteen-se'>{this.state.namaKantin}</h1>
         <button className='btn btn-primary' onClick={() => this.handleGantiNama("Canteen IF")}>Ganti jurusan kantin</button>
         <h2 className='header-menu-makanan'>Menu Makanan</h2>
-        <MenuMakanan 
-        namaMenu={this.state.MenuMakanan[0].nama} 
-        hargaMenu={this.state.MenuMakanan[0].harga}
-        stock={this.state.MenuMakanan[0].stock}  
-        />
-        <MenuMakanan 
-        namaMenu={this.state.MenuMakanan[1].nama} 
-        hargaMenu={this.state.MenuMakanan[1].harga}
-        stock={this.state.MenuMakanan[1].stock}  
-        />
+        { this.state.MenuMakanan.map((menu)=>
+        <MenuMakanan key={menu.id} namaMenu={menu.nama} hargaMenu={menu.harga} stock={menu.stock}/>
+        )}
         <h2 className='header-menu-minuman'>Menu Minuman</h2>
-        <MenuMinuman 
-        namaMenu={this.state.MenuMinuman[0].nama} 
-        hargaMenu={this.state.MenuMinuman[0].harga}
-        stock={this.state.MenuMinuman[0].stock}
-        />
-        <MenuMinuman 
-        namaMenu={this.state.MenuMinuman[1].nama} 
-        hargaMenu={this.state.MenuMinuman[1].harga}
-        stock={this.state.MenuMinuman[1].stock}
-        />
+        { this.state.MenuMinuman.map((menu)=>
+        <MenuMinuman key={menu.id} namaMenu={menu.nama} hargaMenu={menu.harga} stock={menu.stock}/>
+        )}
       </div>
     );
   }
