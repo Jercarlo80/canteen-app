@@ -4,8 +4,8 @@ class menuMinuman extends Component {
     render() {
         return(
             <div style={{border: '1px solid black', width: 300, margin: 'auto'}}>
-                 <p>Nama Menu: Es teh manis</p>
-                <p>Harga: Rp5.000</p>
+                 <p>Nama Menu: {this.props.namaMenu}</p>
+                <p>Harga: Rp{this.props.hargaMenu}</p>
             </div>
         );
     }
