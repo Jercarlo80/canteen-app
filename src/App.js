@@ -4,10 +4,16 @@ import MenuMinuman from './Components/Menu/MenuMinuman/menuMinuman';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      namaKantin: "Canteen SE",
+    }
+  }
   render(){
     return(
       <div className='App'>
-        <h1 className='header-campus-se'>Canteen Campus SE</h1>
+        <h1 className='header-name-canteen-se'>{this.state.namaKantin}</h1>
         <h2 className='header-menu-makanan'>Menu Makanan</h2>
         <MenuMakanan namaMenu={"Ayam bakar"} hargaMenu={25000}/>
         <MenuMakanan namaMenu={"Bebek goreng"} hargaMenu={30000}/>
