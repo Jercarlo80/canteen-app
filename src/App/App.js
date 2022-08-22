@@ -8,6 +8,9 @@ class App extends Component {
     super();
     this.state = {
       namaKantin: "Canteen SE",
+      namaPembeli: '',
+      keterangan: '',
+      jenisPembayaran: '',
       MenuMakanan: [
         {id: 1, nama: 'Ayam bakar', harga: 25000, stock: 10},
         {id: 2, nama: 'Bebek goreng', harga: 30000, stock: 12},
@@ -30,11 +33,81 @@ class App extends Component {
     this.setState({namaKantin: nama})
   }
 
+  handleGantiNamaPembeli = (event) => {
+    this.setState({namaPembeli: event.target.value})
+  }
+
+  handleGantiKeterangan = (event) => {
+    this.setState({keterangan: event.target.value})
+  }
+  handLeGantiPembayaran = (event) => {
+    this.setState({jenisPembayaran: event.target.value})
+  }
+
+  //Menjadikan satu handle ganti nama dsb.
+  handleGanti =(event) => {
+    var nama = event.target.nama
+    var value = event.target.value
+    this.setState({[nama]: value})
+  }
+
   render(){
     return(
       <div className='App'> SELAMAT DATANG DI KANTIN FAKULTAS INFORMATIKA
         <h1 className='header-name-canteen-se'>{this.state.namaKantin}</h1>
         <button className='btn btn-primary' onClick={() => this.handleGantiNama("Canteen IF")}>Ganti jurusan kantin</button>
+        <div className='row' style={{marginTop: '10px'}}>
+          <div className='col-md offset-md-4'>
+            <form>
+              <div className='form-group'>
+                <label>
+                  Nama Pembeli:
+                </label>
+                <input 
+                  className='form-control' 
+                  name='namaPembeli' 
+                  onChange={this.handleGantiNamaPembeli}
+                  value={this.state.namaPembeli}
+                />
+                <small>
+                  Pemesan: {this.state.namaPembeli}
+                </small>
+              </div>
+              <div className='form-group'>
+                <label>Keterangan: </label>
+                <textarea
+                  className='form-control'
+                  name='keterangan'
+                  onChange={this.handleGantiKeterangan}
+                  value={this.state.keterangan}
+                ></textarea>
+                <small>
+                  Keterangan pemesanan: {this.state.keterangan}
+                </small>
+              </div>              
+              <div className='form-group'> 
+                <label>
+                  Jenis pembayaran
+                </label>
+                <select
+                  className='form-control'
+                  name='jenisPembayaran'
+                  value={this.state.value}
+                  onChange={this.handeGantiPembayaran}
+                >
+                  <option value='cash'> Cash</option>
+                  <option value='debitCard'>Debit Card</option>
+                  <option value='e-wallet'>E-Wallet</option>
+                  <option value='voucher'>Voucher</option>
+                </select>
+                <small>
+                  Jenis Pembayaran: {this.state.jenisPembayaran}
+                </small>
+              </div>
+            </form>
+          </div>
+        </div>
+
         <h2 className='header-menu-makanan'>Menu Makanan</h2>
         { this.state.MenuMakanan.map((menu)=>
         <MenuMakanan key={menu.id} namaMenu={menu.nama} hargaMenu={menu.harga} stock={menu.stock}/>
